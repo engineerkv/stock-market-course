@@ -1,0 +1,656 @@
+/* ---------- Theme ---------- */
+
+:root {
+  --ifm-color-primary: #0f7a5f;
+  --ifm-color-primary-dark: #0d6e56;
+  --ifm-color-primary-darker: #0c6851;
+  --ifm-color-primary-darkest: #0a5543;
+  --ifm-color-primary-light: #118668;
+  --ifm-color-primary-lighter: #128c6d;
+  --ifm-color-primary-lightest: #15a07c;
+
+  --ifm-background-color: #fbfaf7;
+  --ifm-background-surface-color: #ffffff;
+  --ifm-navbar-background-color: rgba(251, 250, 247, 0.85);
+  --ifm-font-color-base: #1f2933;
+  --ifm-heading-color: #102a23;
+
+  --ifm-font-family-base: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --ifm-heading-font-family: 'Lexend Variable', 'Inter Variable', system-ui, sans-serif;
+  --ifm-font-family-monospace: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --ifm-font-size-base: 106.25%;
+  --ifm-line-height-base: 1.75;
+  --ifm-heading-font-weight: 600;
+  --ifm-heading-line-height: 1.3;
+  --ifm-h1-font-size: 2.35rem;
+  --ifm-h2-font-size: 1.65rem;
+  --ifm-h3-font-size: 1.25rem;
+  --ifm-code-font-size: 88%;
+  --ifm-global-radius: 10px;
+  --ifm-toc-border-color: transparent;
+  --ifm-link-decoration: none;
+
+  --course-accent: #d97706;
+  --course-surface: #ffffff;
+  --course-border: #e7e3da;
+  --course-soft: #f1efe8;
+  --course-shadow: 0 1px 2px rgba(16, 42, 35, 0.05), 0 8px 24px rgba(16, 42, 35, 0.06);
+  --course-shadow-hover: 0 2px 4px rgba(16, 42, 35, 0.06), 0 14px 32px rgba(16, 42, 35, 0.12);
+  --course-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  --docusaurus-highlighted-code-line-bg: rgba(15, 122, 95, 0.1);
+}
+
+html[data-theme='dark'] {
+  --ifm-color-primary: #3ddc97;
+  --ifm-color-primary-dark: #27d68a;
+  --ifm-color-primary-darker: #25ca82;
+  --ifm-color-primary-darkest: #1ea66b;
+  --ifm-color-primary-light: #5ae2a6;
+  --ifm-color-primary-lighter: #64e4ab;
+  --ifm-color-primary-lightest: #85eabd;
+
+  --ifm-background-color: #0f1417;
+  --ifm-background-surface-color: #151b1f;
+  --ifm-navbar-background-color: rgba(15, 20, 23, 0.85);
+  --ifm-font-color-base: #d9e1e4;
+  --ifm-heading-color: #f1f5f4;
+
+  --course-accent: #fbbf24;
+  --course-surface: #151b1f;
+  --course-border: #26313a;
+  --course-soft: #1a2227;
+  --course-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --course-shadow-hover: 0 10px 28px rgba(0, 0, 0, 0.45);
+
+  --docusaurus-highlighted-code-line-bg: rgba(61, 220, 151, 0.12);
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--ifm-color-primary) 22%, transparent);
+}
+
+/* ---------- Navbar and reading progress ---------- */
+
+.navbar {
+  backdrop-filter: saturate(160%) blur(10px);
+  -webkit-backdrop-filter: saturate(160%) blur(10px);
+  box-shadow: 0 1px 0 var(--course-border);
+}
+
+.navbar__title {
+  font-family: var(--ifm-heading-font-family);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.navbar__link {
+  font-weight: 500;
+  border-radius: 8px;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.navbar__link:hover {
+  background: var(--course-soft);
+}
+
+@supports (animation-timeline: scroll()) {
+  .navbar::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    height: 3px;
+    width: 100%;
+    background: linear-gradient(90deg, var(--ifm-color-primary), var(--course-accent));
+    transform-origin: 0 50%;
+    transform: scaleX(0);
+    animation: course-progress linear both;
+    animation-timeline: scroll(root);
+  }
+
+  @keyframes course-progress {
+    to {
+      transform: scaleX(1);
+    }
+  }
+}
+
+/* ---------- Reading column ---------- */
+
+.markdown {
+  --ifm-h1-vertical-rhythm-bottom: 1;
+  max-width: 76ch;
+}
+
+.markdown > p,
+.markdown li {
+  letter-spacing: 0.003em;
+}
+
+.markdown h1:first-child {
+  letter-spacing: -0.02em;
+  margin-bottom: 1.25rem;
+}
+
+.markdown h2 {
+  position: relative;
+  margin-top: 3rem;
+  padding-top: 1.4rem;
+  letter-spacing: -0.01em;
+  border-top: 1px solid var(--course-border);
+}
+
+.markdown h2::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 0;
+  width: 56px;
+  height: 3px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--ifm-color-primary), var(--course-accent));
+}
+
+.markdown h3 {
+  margin-top: 2rem;
+}
+
+.markdown strong {
+  color: var(--ifm-heading-color);
+  font-weight: 650;
+}
+
+.markdown hr {
+  margin: 2.5rem 0;
+  border: 0;
+  height: 1px;
+  background: var(--course-border);
+}
+
+/* Section headings already draw their own divider. */
+.markdown hr:has(+ h2) {
+  display: none;
+}
+
+/* Animated underline for links inside lesson text. */
+.markdown a:not(.hash-link) {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1.5px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  box-shadow: inset 0 -1px 0 color-mix(in srgb, var(--ifm-color-primary) 35%, transparent);
+  transition: background-size 0.25s var(--course-ease), color 0.2s ease;
+}
+
+.markdown a:not(.hash-link):hover {
+  background-size: 100% 1.5px;
+  text-decoration: none;
+}
+
+.markdown blockquote {
+  border-left: 4px solid var(--course-accent);
+  border-radius: 0 10px 10px 0;
+  background: color-mix(in srgb, var(--course-accent) 7%, transparent);
+  padding: 0.8rem 1.1rem;
+  color: inherit;
+}
+
+.markdown code {
+  border: 1px solid var(--course-border);
+  background: var(--course-soft);
+  padding: 0.1rem 0.35rem;
+}
+
+.markdown pre code {
+  border: 0;
+  background: none;
+  padding: 0;
+}
+
+/* Text blocks such as the journal template depend on exact column alignment. */
+.markdown pre code {
+  line-height: 1.5;
+  white-space: pre;
+}
+
+.theme-code-block {
+  border: 1px solid var(--course-border);
+  box-shadow: var(--course-shadow);
+}
+
+/* Checklists read as a list of ticks, not form controls. */
+.markdown .contains-task-list {
+  padding-left: 0.25rem;
+}
+
+.markdown .task-list-item {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0.15rem 0.6rem 0.15rem 2.2rem;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+
+.markdown .task-list-item:hover {
+  background: var(--course-soft);
+}
+
+.markdown .task-list-item input {
+  position: absolute;
+  left: 0.6rem;
+  top: 0.62em;
+  margin: 0;
+  accent-color: var(--ifm-color-primary);
+}
+
+/* ---------- Tables ---------- */
+
+/* Lessons use wide comparison tables; let them fill the column and scroll when needed. */
+.markdown table {
+  display: table;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--course-border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--course-surface);
+  box-shadow: var(--course-shadow);
+  font-size: 0.94rem;
+}
+
+.markdown table thead tr {
+  background: color-mix(in srgb, var(--ifm-color-primary) 9%, var(--course-surface));
+  border: 0;
+}
+
+.markdown table th {
+  font-family: var(--ifm-heading-font-family);
+  font-weight: 600;
+  color: var(--ifm-heading-color);
+}
+
+.markdown table th,
+.markdown table td {
+  border: 0;
+  border-bottom: 1px solid var(--course-border);
+  padding: 0.65rem 0.9rem;
+}
+
+.markdown table tr:last-child td {
+  border-bottom: 0;
+}
+
+.markdown table tbody tr {
+  background: transparent;
+  border: 0;
+  transition: background 0.15s ease;
+}
+
+.markdown table tbody tr:nth-child(2n) {
+  background: color-mix(in srgb, var(--course-soft) 55%, transparent);
+}
+
+.markdown table tbody tr:hover {
+  background: color-mix(in srgb, var(--ifm-color-primary) 8%, transparent);
+}
+
+@media (max-width: 996px) {
+  .markdown table {
+    display: block;
+    overflow-x: auto;
+  }
+}
+
+/* ---------- Admonitions ---------- */
+
+.theme-admonition {
+  border-radius: 12px;
+  border-width: 0 0 0 4px;
+  box-shadow: var(--course-shadow);
+}
+
+/* ---------- Sidebar, table of contents, pagination ---------- */
+
+.menu {
+  font-size: 0.93rem;
+}
+
+.menu__link {
+  border-radius: 8px;
+  transition: background 0.2s ease, color 0.2s ease, padding-left 0.2s var(--course-ease);
+}
+
+.menu__link:hover {
+  padding-left: calc(var(--ifm-menu-link-padding-horizontal) + 4px);
+}
+
+.menu__link--active:not(.menu__link--sublist) {
+  background: color-mix(in srgb, var(--ifm-color-primary) 12%, transparent);
+  font-weight: 600;
+}
+
+.table-of-contents {
+  font-size: 0.85rem;
+  border-left: 1px solid var(--course-border);
+}
+
+.table-of-contents__link {
+  display: block;
+  transition: color 0.2s ease, transform 0.2s var(--course-ease);
+}
+
+.table-of-contents__link:hover {
+  transform: translateX(3px);
+}
+
+.table-of-contents__link--active {
+  font-weight: 600;
+}
+
+.pagination-nav__link {
+  border-color: var(--course-border);
+  border-radius: 12px;
+  background: var(--course-surface);
+  transition: border-color 0.2s ease, box-shadow 0.25s ease, transform 0.25s var(--course-ease);
+}
+
+.pagination-nav__link:hover {
+  border-color: var(--ifm-color-primary);
+  box-shadow: var(--course-shadow-hover);
+  transform: translateY(-2px);
+}
+
+.pagination-nav__label {
+  font-family: var(--ifm-heading-font-family);
+}
+
+/* ---------- Diagrams ---------- */
+
+.docusaurus-mermaid-container {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem 0 2rem;
+  padding: 1.75rem 1.5rem;
+  border: 1px solid var(--course-border);
+  border-radius: 12px;
+  background: var(--course-surface);
+  box-shadow: var(--course-shadow);
+  overflow-x: auto;
+  animation: course-rise 0.5s var(--course-ease) both;
+  transition: box-shadow 0.25s ease;
+}
+
+.docusaurus-mermaid-container:hover {
+  box-shadow: var(--course-shadow-hover);
+}
+
+.docusaurus-mermaid-container > svg {
+  max-width: 100%;
+}
+
+/* Filled, rounded flowchart boxes; decisions get a warm fill so questions stand out. */
+.docusaurus-mermaid-container .node rect,
+.docusaurus-mermaid-container .node path.basic {
+  rx: 10px;
+  ry: 10px;
+  filter: drop-shadow(0 2px 3px rgba(15, 23, 42, 0.12));
+}
+
+.docusaurus-mermaid-container .node {
+  transition: filter 0.2s ease;
+}
+
+.docusaurus-mermaid-container .node:hover {
+  filter: brightness(1.04) drop-shadow(0 4px 8px rgba(15, 23, 42, 0.18));
+}
+
+.docusaurus-mermaid-container .node polygon {
+  fill: #fff4e0 !important;
+  stroke: #d97706 !important;
+  filter: drop-shadow(0 2px 3px rgba(15, 23, 42, 0.12));
+}
+
+[data-theme='dark'] .docusaurus-mermaid-container .node polygon {
+  fill: #3a2a0c !important;
+  stroke: #fbbf24 !important;
+}
+
+/* Mermaid sizes label boxes before this CSS applies, so labels keep its font metrics
+   and the padding is allowed to spill past the measured box instead of clipping. */
+.docusaurus-mermaid-container foreignObject {
+  overflow: visible;
+}
+
+.docusaurus-mermaid-container .edgeLabel p {
+  display: inline-block;
+  padding: 3px 8px;
+  margin: -3px -8px !important;
+  border-radius: 6px;
+}
+
+[data-theme='dark'] .docusaurus-mermaid-container .node rect,
+[data-theme='dark'] .docusaurus-mermaid-container .node path.basic,
+[data-theme='dark'] .docusaurus-mermaid-container .node polygon {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5)) !important;
+}
+
+@keyframes course-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- Home page ---------- */
+
+.hero--course {
+  position: relative;
+  overflow: hidden;
+  padding: 5.5rem 0 4.5rem;
+  text-align: center;
+  background:
+    radial-gradient(60rem 24rem at 15% -10%, color-mix(in srgb, var(--ifm-color-primary) 18%, transparent), transparent 70%),
+    radial-gradient(50rem 22rem at 90% 0%, color-mix(in srgb, var(--course-accent) 16%, transparent), transparent 70%);
+}
+
+.hero--course .hero__title {
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  letter-spacing: -0.03em;
+  animation: course-rise 0.6s var(--course-ease) both;
+}
+
+.hero--course .hero__subtitle {
+  max-width: 40rem;
+  margin: 0 auto 2rem;
+  color: var(--ifm-color-emphasis-700);
+  animation: course-rise 0.6s 0.08s var(--course-ease) both;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  animation: course-rise 0.6s 0.16s var(--course-ease) both;
+}
+
+.hero-actions .button {
+  border-radius: 999px;
+  padding-inline: 1.6rem;
+  transition: transform 0.2s var(--course-ease), box-shadow 0.2s ease;
+}
+
+.hero-actions .button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px color-mix(in srgb, var(--ifm-color-primary) 30%, transparent);
+}
+
+.hero-candles {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 10px;
+  height: 70px;
+  margin: 0 auto 1.75rem;
+}
+
+.hero-candles span {
+  position: relative;
+  width: 12px;
+  border-radius: 3px;
+  background: var(--c);
+  height: var(--h);
+  margin-bottom: var(--b);
+  transform-origin: bottom;
+  animation: course-candle 0.7s var(--course-ease) both;
+  animation-delay: calc(var(--i) * 70ms);
+}
+
+.hero-candles span::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: -8px;
+  bottom: -8px;
+  width: 2px;
+  transform: translateX(-50%);
+  background: var(--c);
+  opacity: 0.6;
+  z-index: -1;
+}
+
+@keyframes course-candle {
+  from {
+    opacity: 0;
+    transform: scaleY(0.2);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.home-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.1rem;
+  padding: 1rem 0 4.5rem;
+}
+
+.home-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  border: 1px solid var(--course-border);
+  border-radius: 14px;
+  padding: 1.4rem 1.4rem 1.2rem;
+  background: var(--course-surface);
+  box-shadow: var(--course-shadow);
+  color: inherit;
+  overflow: hidden;
+  animation: course-rise 0.55s var(--course-ease) both;
+  animation-delay: calc(0.2s + var(--i, 0) * 60ms);
+  transition: border-color 0.2s ease, box-shadow 0.25s ease, transform 0.25s var(--course-ease);
+}
+
+.home-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: linear-gradient(90deg, var(--ifm-color-primary), var(--course-accent));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s var(--course-ease);
+}
+
+.home-card:hover {
+  border-color: color-mix(in srgb, var(--ifm-color-primary) 45%, var(--course-border));
+  box-shadow: var(--course-shadow-hover);
+  color: inherit;
+  text-decoration: none;
+  transform: translateY(-4px);
+}
+
+.home-card:hover::before {
+  transform: scaleX(1);
+}
+
+.home-card__step {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 10px;
+  font-family: var(--ifm-heading-font-family);
+  font-weight: 600;
+  color: var(--ifm-color-primary);
+  background: color-mix(in srgb, var(--ifm-color-primary) 12%, transparent);
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.home-card:hover .home-card__step {
+  background: var(--ifm-color-primary);
+  color: var(--ifm-background-color);
+}
+
+.home-card h3 {
+  margin: 0.4rem 0 0;
+}
+
+.home-card p {
+  margin: 0;
+  flex: 1;
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.home-card__more {
+  margin-top: 0.6rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ifm-color-primary);
+}
+
+.home-card__more::after {
+  content: ' →';
+  display: inline-block;
+  transition: transform 0.25s var(--course-ease);
+}
+
+.home-card:hover .home-card__more::after {
+  transform: translateX(4px);
+}
+
+/* ---------- Motion preferences ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

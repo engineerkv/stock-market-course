@@ -1,0 +1,260 @@
+.figure {
+  --chart-c1: #2563eb;
+  --chart-c2: #f59e0b;
+  --chart-c3: #7c3aed;
+  --chart-c4: #0d9488;
+  --chart-c5: #db2777;
+  --chart-c6: #65a30d;
+  --chart-good: #16a34a;
+  --chart-bad: #dc2626;
+  --chart-info: #2563eb;
+  --chart-warn: #d97706;
+  --chart-neutral: #64748b;
+  --chart-text: var(--ifm-color-emphasis-700);
+
+  margin: 0 0 var(--ifm-leading);
+  padding: 0.75rem 0.9rem 0.6rem;
+  border: 1px solid var(--course-border, var(--ifm-color-emphasis-200));
+  border-radius: 12px;
+  background: var(--course-surface, var(--ifm-background-surface-color));
+  box-shadow: var(--course-shadow);
+  animation: course-rise 0.5s var(--course-ease) both;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.figure:hover {
+  border-color: color-mix(in srgb, var(--ifm-color-primary) 35%, var(--course-border));
+  box-shadow: var(--course-shadow-hover);
+}
+
+[data-theme='dark'] .figure {
+  --chart-c1: #60a5fa;
+  --chart-c2: #fbbf24;
+  --chart-c3: #a78bfa;
+  --chart-c4: #2dd4bf;
+  --chart-c5: #f472b6;
+  --chart-c6: #a3e635;
+  --chart-good: #22c55e;
+  --chart-bad: #f87171;
+  --chart-info: #60a5fa;
+  --chart-warn: #fbbf24;
+  --chart-neutral: #94a3b8;
+}
+
+@keyframes course-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  min-height: 1.7rem;
+  margin-bottom: 0.4rem;
+}
+
+.figureTitle {
+  font-family: var(--ifm-heading-font-family);
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.buttons {
+  display: inline-flex;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.button {
+  border: 1px solid var(--ifm-color-primary);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ifm-color-primary);
+  font-size: 0.76rem;
+  font-weight: 600;
+  padding: 0.15rem 0.7rem;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.button:hover {
+  background: var(--ifm-color-primary);
+  color: var(--ifm-background-color);
+}
+
+.info,
+.legend,
+.axisCaption {
+  margin-top: 0.45rem;
+  font-size: 0.8rem;
+  color: var(--chart-text);
+  text-align: center;
+}
+
+.axisCaption {
+  margin-top: 0.1rem;
+  font-weight: 600;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem 1rem;
+  min-height: 1.4rem;
+}
+
+.legendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.swatch {
+  display: inline-block;
+  width: 14px;
+  height: 4px;
+  border-radius: 2px;
+}
+
+.swatchDashed {
+  display: inline-block;
+  width: 14px;
+  height: 0;
+  border-top: 2px dashed currentColor;
+  background: none !important;
+}
+
+/* ---------- lightweight-charts canvases ---------- */
+
+.candlePanels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.75rem;
+}
+
+.candlePanel {
+  min-width: 0;
+}
+
+.panelTitle {
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--chart-text);
+}
+
+.candleCanvas {
+  height: 240px;
+}
+
+.xyCanvas {
+  height: 330px;
+}
+
+@media (max-width: 600px) {
+  .xyCanvas {
+    height: 280px;
+  }
+}
+
+/* ---------- colour helpers ---------- */
+
+.fill_c1 { fill: var(--chart-c1); background: var(--chart-c1); color: var(--chart-c1); }
+.fill_c2 { fill: var(--chart-c2); background: var(--chart-c2); color: var(--chart-c2); }
+.fill_c3 { fill: var(--chart-c3); background: var(--chart-c3); color: var(--chart-c3); }
+.fill_c4 { fill: var(--chart-c4); background: var(--chart-c4); color: var(--chart-c4); }
+.fill_c5 { fill: var(--chart-c5); background: var(--chart-c5); color: var(--chart-c5); }
+.fill_c6 { fill: var(--chart-c6); background: var(--chart-c6); color: var(--chart-c6); }
+
+.tone_good { fill: var(--chart-good); }
+.tone_bad { fill: var(--chart-bad); }
+.tone_info { fill: var(--chart-info); }
+.tone_warn { fill: var(--chart-warn); }
+.tone_neutral { fill: var(--chart-neutral); }
+.toneFill_good { fill: var(--chart-good); }
+.toneFill_bad { fill: var(--chart-bad); }
+.toneFill_info { fill: var(--chart-info); }
+.toneFill_warn { fill: var(--chart-warn); }
+.toneFill_neutral { fill: var(--chart-neutral); }
+.toneStroke_good { stroke: var(--chart-good); }
+.toneStroke_bad { stroke: var(--chart-bad); }
+.toneStroke_info { stroke: var(--chart-info); }
+.toneStroke_warn { stroke: var(--chart-warn); }
+.toneStroke_neutral { stroke: var(--chart-neutral); }
+.toneText_good { fill: var(--chart-good); }
+.toneText_bad { fill: var(--chart-bad); }
+.toneText_info { fill: var(--chart-info); }
+.toneText_warn { fill: var(--chart-warn); }
+.toneText_neutral { fill: var(--ifm-font-color-base); }
+
+/* ---------- level ladder (SVG) ---------- */
+
+.svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  overflow: visible;
+  font-family: var(--ifm-font-family-base);
+}
+
+.wide {
+  width: 100%;
+}
+
+.axisLine {
+  stroke: var(--chart-text);
+  stroke-width: 1.5;
+  opacity: 0.5;
+}
+
+.ladderRow {
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.dimmed {
+  opacity: 0.35;
+}
+
+.band {
+  opacity: 0.14;
+}
+
+.bandLabel {
+  font-size: 12px;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.ladderLine {
+  stroke-width: 2;
+  stroke-dasharray: 8 5;
+}
+
+.ladderValue {
+  font-size: 13px;
+  font-weight: 700;
+  fill: var(--ifm-font-color-base);
+  font-variant-numeric: tabular-nums;
+}
+
+.ladderLabel {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.ladderNote {
+  fill: var(--chart-text);
+  font-weight: 400;
+}

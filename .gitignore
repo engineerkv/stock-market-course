@@ -1,0 +1,10 @@
+# Never commit original documents or sheets; the course markdown is the published material.
+*.pdf
+*.xlsx
+
+.DS_Store
+
+# Docusaurus site build output and dependencies.
+node_modules/
+build/
+.docusaurus/
